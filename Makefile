@@ -5,7 +5,6 @@ tag    ?= $(shell date +%y.%m.%m)
 all: run
 
 run:
-	docker rm $(name)
 	docker run -d --name $(name) $(prefix)/$(name):latest bash
 
 build: Dockerfile
