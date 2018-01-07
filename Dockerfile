@@ -23,10 +23,3 @@ RUN make -f Makefile.linux \
 WORKDIR /tmp/z80pack-${Z80PACK_VERSION}/z80asm
 RUN make \
  && cp z80asm /usr/local/bin
-
-WORKDIR /
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["vsftpd"]
