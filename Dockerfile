@@ -9,6 +9,7 @@ RUN apt-get update \
  && apt-get upgrade -y -q \
  && apt-get install -y -q --no-install-recommends \
 	build-essential \
+	git \
 	wget
 
 ENV Z80PACK_VERSION 1.36
@@ -23,3 +24,9 @@ RUN make -f Makefile.linux \
 WORKDIR /tmp/z80pack-${Z80PACK_VERSION}/z80asm
 RUN make \
  && cp z80asm /usr/local/bin
+
+WORKDIR /tmp
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

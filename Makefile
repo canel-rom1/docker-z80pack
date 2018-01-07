@@ -1,11 +1,12 @@
 prefix ?= canelrom1
 name   ?= z80pack
 tag    ?= $(shell date +%y.%m.%m)
+repo_git ?= 
 
 all: run
 
 run:
-	docker run -d --name $(name) $(prefix)/$(name):latest bash
+	docker run -it --name $(name) $(repo_git) $(prefix)/$(name):latest bash
 
 build: Dockerfile
 	docker build -t $(prefix)/$(name):$(tag) .
