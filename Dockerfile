@@ -9,6 +9,8 @@ RUN apt-get update \
  && apt-get install -y -q --no-install-recommends \
 	build-essential \
 	git \
+	tmux \
+	vim \
 	wget
 
 ENV Z80PACK_VERSION 1.36

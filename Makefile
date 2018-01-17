@@ -1,6 +1,6 @@
 prefix  ?= canelrom1
 name    ?= z80pack
-tag     ?= $(shell date +%y.%m.%m)
+tag     ?= $(shell date +%y.%m.%d)
 
 env_file = ./environment.conf
 
@@ -12,6 +12,7 @@ run:
 		|| docker run -it --name $(name) $(prefix)/$(name):latest bash
 
 build: Dockerfile
+	docker images -q $(prefix)/$(name):latest >> .imagesid
 	docker build -t $(prefix)/$(name):$(tag) .
 	docker tag $(prefix)/$(name):$(tag) $(prefix)/$(name):latest 
 
@@ -20,6 +21,9 @@ stop:
 
 rm: stop
 	docker rm $(name)
+
+clean-old-images:
+	docker rmi `tac .imagesid`
 
 clean-docker:
 	docker rmi $(prefix)/$(name):$(tag)

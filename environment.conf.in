@@ -1,0 +1,4 @@
+## Copier un répertoire GIT dans le container
+#REPO_GIT=https://github.com/user/repo
+
+# vim: ft=dosini
