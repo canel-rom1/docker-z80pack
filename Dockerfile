@@ -1,8 +1,7 @@
 FROM canelrom1/debian-canel:latest
 MAINTAINER Rom1 <rom1@canel.ch> - CANEL - https://www.canel.ch
 
-LABEL date="07/01/1"
-LABEL version="1.0"
+LABEL date="07/01/18"
 LABEL description="z80pack: Simulator for Z80, 8080 CP/M(1,2,3) MP/M - http://www.autometer.de/unix4fun/z80pack/"
 
 RUN apt-get update \
@@ -25,7 +24,9 @@ WORKDIR /tmp/z80pack-${Z80PACK_VERSION}/z80asm
 RUN make \
  && cp z80asm /usr/local/bin
 
-WORKDIR /tmp
+RUN mkdir /home/z80
+WORKDIR /home
+
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

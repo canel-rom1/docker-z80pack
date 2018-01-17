@@ -1,16 +1,25 @@
-prefix ?= canelrom1
-name   ?= z80pack
-tag    ?= $(shell date +%y.%m.%m)
-repo_git ?= 
+prefix  ?= canelrom1
+name    ?= z80pack
+tag     ?= $(shell date +%y.%m.%m)
+
+env_file = ./environment.conf
 
 all: run
 
 run:
-	docker run -it --name $(name) $(repo_git) $(prefix)/$(name):latest bash
+	test -f $(env_file) \
+		&& docker run -it --name $(name) --env-file=$(env_file) $(prefix)/$(name):latest bash \
+		|| docker run -it --name $(name) $(prefix)/$(name):latest bash
 
 build: Dockerfile
 	docker build -t $(prefix)/$(name):$(tag) .
 	docker tag $(prefix)/$(name):$(tag) $(prefix)/$(name):latest 
+
+stop:
+	docker stop $(name)
+
+rm: stop
+	docker rm $(name)
 
 clean-docker:
 	docker rmi $(prefix)/$(name):$(tag)

@@ -6,7 +6,7 @@ trap "echo SIGNAL" HUP INT QUIT KILL TERM
 if [ -n "$REPO_GIT" ]
 then
 	git config --system http.sslverify false
-	git clone $REPO_GIT
+	git clone $REPO_GIT /home/z80
 fi
 
 exec "$@"
