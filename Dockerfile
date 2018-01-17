@@ -24,6 +24,10 @@ WORKDIR /tmp/z80pack-${Z80PACK_VERSION}/z80asm
 RUN make \
  && cp z80asm /usr/local/bin
 
+WORKDIR /tmp/z80pack-${Z80PACK_VERSION}/cpmsim/srctools
+RUN make bin2hex \
+ && cp bin2hex /usr/local/bin
+
 RUN mkdir /home/z80
 WORKDIR /home
 
