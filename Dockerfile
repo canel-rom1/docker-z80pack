@@ -10,6 +10,7 @@ RUN apt-get update \
 	    install build-essential \
 		    git \
 	            locales \
+                    ssh-client \
 	            tmux \
 	            vim \
 	            wget

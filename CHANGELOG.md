@@ -2,6 +2,7 @@
 
 ## 18.01.22
 - Add locale
+- Add ssh-client
 
 ## 18.01.17
 - Add CHANGELOG.md file
