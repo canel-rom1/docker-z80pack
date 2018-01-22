@@ -8,8 +8,8 @@ all: run
 
 run:
 	test -f $(env_file) \
-		&& docker run -it --name $(name) --env-file=$(env_file) $(prefix)/$(name):latest bash \
-		|| docker run -it --name $(name) $(prefix)/$(name):latest bash
+		&& docker run -it --name $(name) --env-file=$(env_file) $(prefix)/$(name):latest tmux \
+		|| docker run -it --name $(name) $(prefix)/$(name):latest tmux
 
 build: Dockerfile
 	docker images -q $(prefix)/$(name):latest >> .imagesid
@@ -22,8 +22,9 @@ stop:
 rm: stop
 	docker rm $(name)
 
-clean-old-images:
+clean-old-images: 
 	docker rmi `tac .imagesid`
+	rm -f .imagesid
 
 clean-docker:
 	docker rmi $(prefix)/$(name):$(tag)

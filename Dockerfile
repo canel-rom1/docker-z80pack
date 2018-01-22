@@ -6,12 +6,19 @@ LABEL description="z80pack: Simulator for Z80, 8080 CP/M(1,2,3) MP/M - http://ww
 
 RUN apt-get update \
  && apt-get upgrade -y -q \
- && apt-get install -y -q --no-install-recommends \
-	build-essential \
-	git \
-	tmux \
-	vim \
-	wget
+ && apt-get -y -q --no-install-recommends \
+	    install build-essential \
+		    git \
+	            locales \
+	            tmux \
+	            vim \
+	            wget
+RUN sed -i 's/# fr_CH.UTF-8 UTF-8/fr_CH.UTF-8 UTF-8/' /etc/locale.gen \
+ && locale-gen fr_CH.UTF-8
+ENV LANG fr_CH.UTF-8 
+ENV LANGUAGE fr_CH.UTF-8
+ENV LC_ALL fr_CH.UTF-8 
+ENV LC_CTYPE fr_CH.UTF-8
 
 ENV Z80PACK_VERSION 1.36
 
