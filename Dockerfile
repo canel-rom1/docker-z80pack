@@ -1,6 +1,6 @@
 FROM canelrom1/debian-canel:latest
-MAINTAINER Rom1 <rom1@canel.ch> - CANEL - https://www.canel.ch
 
+LABEL maintainer="Rom1 <rom1@canel.ch> - CANEL - https://www.canel.ch"
 LABEL date="07/01/18"
 LABEL description="z80pack: Simulator for Z80, 8080 CP/M(1,2,3) MP/M - http://www.autometer.de/unix4fun/z80pack/"
 

@@ -1,5 +1,8 @@
 # z80pack
 
+## 18.01.27
+- Delete MAINTAINER (deprecated)
+
 ## 18.01.22
 - Add locale
 - Add ssh-client
